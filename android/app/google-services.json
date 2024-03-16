@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "683918464292",
+    "project_id": "windou",
+    "storage_bucket": "windou.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:683918464292:android:95393a0db7708208ba8fb1",
+        "android_client_info": {
+          "package_name": "com.example.windou"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCljKqYrGAgx7_mgE9PuYg03tf9nI8SGTc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
