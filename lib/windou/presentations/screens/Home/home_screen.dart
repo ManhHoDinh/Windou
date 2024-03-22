@@ -1,4 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../../../core/helper/AuthFunctions.dart';
+import '../account/login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,8 +19,16 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Home Screen'),
       ),
-      body: const Center(
-        child: Text('Welcome to Windou'),
+      body:  Center(
+        child: GestureDetector(
+          onTap: () {
+            FirebaseAuth.instance.signOut();
+                  AuthServices.CurrentUser = null;
+                  Navigator.pushReplacementNamed(
+                      context, LoginScreen.routeName);
+          },
+          child: Text('Go to Login Screen'),
+        )
       ),
     );
   }

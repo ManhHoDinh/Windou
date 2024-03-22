@@ -4,7 +4,7 @@ import 'package:windou/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:windou/windou/core/helper/local_storage_helper.dart';
-import 'package:windou/windou/presentations/screens/splash/splash_screen.dart';
+import 'package:windou/windou/main.dart';
 import 'navigation_home_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         textTheme: AppTheme.textTheme,
         platform: TargetPlatform.iOS,
       ),
-      home: SplashScreen(),
+      home: WindouApp(),
     );
   }
 }

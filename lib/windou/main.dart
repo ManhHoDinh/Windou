@@ -4,6 +4,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:windou/windou/presentations/routes/app_router.dart';
 import 'package:windou/windou/presentations/screens/Home/home_screen.dart';
 import 'package:windou/windou/presentations/screens/account/login_screen.dart';
+import 'package:windou/windou/presentations/screens/account/onboarding.dart';
 import 'package:windou/windou/presentations/screens/splash/splash_screen.dart';
 import 'core/constants/color_palatte.dart';
 import 'core/helper/AuthFunctions.dart';
@@ -86,7 +87,7 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
                     },
                   );
                 } else {
-                  return LoginScreen();
+                  return Onboarding();
                 }
               }
             },
