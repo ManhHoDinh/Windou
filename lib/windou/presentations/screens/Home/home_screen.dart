@@ -4,6 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:windou/windou/core/constants/color_palatte.dart';
 import 'package:windou/windou/core/helper/image_helper.dart';
 import 'package:windou/windou/core/helper/text_styles.dart';
+import 'package:windou/windou/presentations/screens/detect/choose_image_screen.dart';
 import 'package:windou/windou/presentations/widgets/garbageButton.dart';
 import 'package:windou/windou/presentations/widgets/icon_text_button.dart';
 
@@ -80,7 +81,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 child: IconTextButtonWidget(
                                     label: "Phân loại",
                                     icon: AssetHelper.WithDraw,
-                                    onTap: () {})),
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, ChooseImageScreen.routeName);
+                                    })),
                             Expanded(
                                 child: IconTextButtonWidget(
                                     label: "Chia sẻ",
@@ -88,9 +92,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                     onTap: () {}))
                           ],
                         ),
-                        SizedBox(height: 20,),
+                        SizedBox(
+                          height: 20,
+                        ),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
                             alignment: Alignment.centerLeft,
                             child: Text(
                               "Bảng giá phế liệu",
@@ -98,41 +104,45 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   .copyWith(fontWeight: FontWeight.bold),
                               textAlign: TextAlign.start,
                             )),
-                             SizedBox(height: 20,),
-                       
-                            Expanded(
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 20),
-                                child: StreamBuilder<List<GarbageModel>>(
-                                                  stream: FireBaseDataBase.readGarbages(),
-                                                  builder: (context, snapshot) {
-                                                    if (snapshot.hasError) {
-                                                      return Center(
-                                                        child:
-                                  Text('Something went wrong! ${snapshot.error}'),
-                                                      );
-                                                    } else if (snapshot.hasData) {
-                                                      return GridView.count(
-                                padding:
-                                    const EdgeInsets.only(bottom: kMediumPadding),
-                                crossAxisCount: 3,
-                                mainAxisSpacing: 24,
-                                crossAxisSpacing: 24,
-                                childAspectRatio: 0.7,
-                                children: snapshot.data!
-                                    .map((e) => GarbageItem(
-                                          garbage: e,
-                                        ))
-                                    .toList());
-                                                    } else
-                                                      return Container();
-                                                  }),
-                              ),
-                            ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: StreamBuilder<List<GarbageModel>>(
+                                stream: FireBaseDataBase.readGarbages(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Center(
+                                      child: Text(
+                                          'Something went wrong! ${snapshot.error}'),
+                                    );
+                                  } else if (snapshot.hasData) {
+                                    return GridView.count(
+                                        padding: const EdgeInsets.only(
+                                            bottom: kMediumPadding),
+                                        crossAxisCount: 3,
+                                        mainAxisSpacing: 24,
+                                        crossAxisSpacing: 24,
+                                        childAspectRatio: 0.7,
+                                        children: snapshot.data!
+                                            .map((e) => GarbageItem(
+                                                  garbage: e,
+                                                ))
+                                            .toList());
+                                  } else
+                                    return Container();
+                                }),
+                          ),
+                        ),
                       ],
                     ),
                   )),
-                SizedBox(height: 60,)],
+                  SizedBox(
+                    height: 60,
+                  )
+                ],
               ),
             );
           }

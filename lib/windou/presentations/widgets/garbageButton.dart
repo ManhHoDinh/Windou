@@ -31,7 +31,7 @@ class _GarbageItemState extends State<GarbageItem> {
              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                  child: ImageHelper.loadFromNetwork(widget.garbage.imageLink)),
             Text(widget.garbage.name),
-            Text(widget.garbage.price.toString()+"/1Kg"),
+            Text(widget.garbage.price.toString()+"/Kg"),
           ],
         ),
       ),

@@ -22,7 +22,6 @@ class IconTextButtonWidget extends StatelessWidget {
     return InkWell(
       borderRadius: kDefaultBorderRadius,
       onTap: onTap,
-      splashColor: Colors.amber,
       child: Column(
         children: [
           ImageHelper.loadFromAsset(icon, width: 72, height: 72),

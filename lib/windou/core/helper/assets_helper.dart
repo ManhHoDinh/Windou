@@ -29,4 +29,7 @@ class AssetHelper {
   static const String icoTab4 = imgAssets + 'tab4.png';
   static const String icoTab4s = imgAssets + 'tab4s.png';
   static const String icoUser = imgAssets + 'ico_user.png';
+  static const String camera = imgAssets + 'camera.png';
+  static const String gallery = imgAssets + 'gallery.png';
+  
 }
