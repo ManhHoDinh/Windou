@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:windou/windou/presentations/routes/app_router.dart';
 import 'package:windou/windou/presentations/screens/Home/home_screen.dart';
+import 'package:windou/windou/presentations/screens/Home/navigation_home.dart';
 import 'package:windou/windou/presentations/screens/account/login_screen.dart';
 import 'package:windou/windou/presentations/screens/account/onboarding.dart';
 import 'package:windou/windou/presentations/screens/splash/splash_screen.dart';
@@ -31,7 +32,7 @@ class _WindouAppState extends State<WindouApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Paradise',
+      title: 'Windou',
       theme: ThemeData(
         primaryColor: ColorPalette.primaryColor,
         scaffoldBackgroundColor: ColorPalette.backgroundColor,
@@ -82,7 +83,7 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
                         return SplashScreen();
                       } else {
                         // If the update is complete, navigate to the MainScreen
-                        return HomeScreen();
+                        return NavigationHome();
                       }
                     },
                   );

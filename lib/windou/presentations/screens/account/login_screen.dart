@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:windou/windou/core/constants/color_palatte.dart';
 import 'package:windou/windou/core/helper/image_helper.dart';
 import 'package:windou/windou/core/helper/text_styles.dart';
+import 'package:windou/windou/presentations/screens/account/signUp_screen.dart';
 import 'package:windou/windou/presentations/widgets/button_widget.dart';
 
 import '../../../core/constants/dimension_constants.dart';
@@ -52,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   InputWidget(
                       controller: _emailController,
                       labelText: 'Email',
-                      icon: AssetHelper.icoUser,
+                      icon: AssetHelper.icoEmail,
                       validator: (input) {
                         final bool emailValid = RegExp(
                                 r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
@@ -183,7 +184,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: TextStyles.h6.setColor(ColorPalette.grayText),
                       ),
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, SignUpScreen.routeName);
+                          },
                           child: Text("Đăng ký",
                               style: TextStyles.h6
                                   .setColor(ColorPalette.grayText)))

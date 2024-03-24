@@ -3,6 +3,7 @@ import 'package:windou/windou/core/helper/assets_helper.dart';
 import 'package:windou/windou/core/helper/image_helper.dart';
 import 'package:windou/windou/core/helper/text_styles.dart';
 import 'package:windou/windou/presentations/screens/account/login_screen.dart';
+import 'package:windou/windou/presentations/screens/account/signUp_screen.dart';
 
 import '../../../core/constants/color_palatte.dart';
 import '../../widgets/button_widget.dart';
@@ -55,7 +56,7 @@ class _OnboardingState extends State<Onboarding> {
                 color: ColorPalette.lightGreen,
                 textColor: ColorPalette.greenText,
                 onTap: () {
-                  //Navigator.pushNamed(context, 'login_screen');
+                  Navigator.pushNamed(context, SignUpScreen.routeName);
                 },
               ),
               

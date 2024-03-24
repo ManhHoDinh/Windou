@@ -47,7 +47,7 @@ class _InputWidgetState extends State<InputWidget> {
           ),
         ),
         prefixIcon: Container(
-          child: Image.asset(widget.icon),
+          child: Image.asset(widget.icon,width: 24,height: 24,),
           padding: const EdgeInsets.only(right: 20, left: 20),
         ),
         prefixIconConstraints: BoxConstraints(
@@ -63,7 +63,7 @@ class _InputWidgetState extends State<InputWidget> {
                 },
                 child: Image.asset(widget.suffixIcon!)
               )
-            : Image.asset(widget.icon, opacity: const AlwaysStoppedAnimation(0),),
+            : Image.asset(widget.icon,width: 24,height: 24, opacity: const AlwaysStoppedAnimation(0),),
         ),
         suffixIconConstraints: BoxConstraints(
           minWidth: 24,

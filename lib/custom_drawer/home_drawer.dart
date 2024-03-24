@@ -1,5 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:windou/app_theme.dart';
 import 'package:flutter/material.dart';
+
+import '../windou/core/helper/AuthFunctions.dart';
+import '../windou/presentations/screens/account/login_screen.dart';
 
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer(
@@ -169,8 +174,16 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   Icons.power_settings_new,
                   color: Colors.red,
                 ),
-                onTap: () {
-                  onTapped();
+                onTap: () async{
+                  await FirebaseAuth.instance.signOut();
+                        final GoogleSignIn googleSignIn = GoogleSignIn();
+
+                        await googleSignIn.signOut();
+
+                        AuthServices.CurrentUser = null;
+
+                        Navigator.pushReplacementNamed(
+                            context, LoginScreen.routeName);
                 },
               ),
               SizedBox(

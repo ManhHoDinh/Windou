@@ -6,13 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:windou/windou/core/models/user/user.dart';
 import 'package:windou/windou/presentations/screens/Home/home_screen.dart';
+import 'package:windou/windou/presentations/screens/Home/navigation_home.dart';
 
+import '../../presentations/screens/account/login_screen.dart';
 import '../../presentations/widgets/dialog.dart';
 
 class AuthServices {
   static UserModel? CurrentUser;
-  static signUpUser(String password, String name, String email, String phoneNo,
-      BuildContext buildContext) async {
+  static signUpUser({required String name, required String email,required String password,
+    required String phoneNo,
+     required BuildContext buildContext})async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -35,7 +38,7 @@ class AuthServices {
                   task: 'Create User',
                 );
               }))
-          .whenComplete(() => Navigator.of(buildContext).pop());
+          .whenComplete(() => Navigator.of(buildContext).pushNamed(LoginScreen.routeName));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         ScaffoldMessenger.of(buildContext).showSnackBar(
@@ -79,7 +82,7 @@ class AuthServices {
                   );
                 })
             .whenComplete(
-                () => Navigator.of(context).pushNamed(HomeScreen.routeName));
+                () => Navigator.of(context).pushNamed(NavigationHome.routeName));
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -114,7 +117,7 @@ class AuthServices {
                   );
                 })
             .whenComplete(
-                () => Navigator.of(context).pushNamed(HomeScreen.routeName));
+                () => Navigator.of(context).pushNamed(NavigationHome.routeName));
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
