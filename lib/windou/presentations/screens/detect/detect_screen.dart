@@ -1,8 +1,10 @@
 import 'dart:io';
+import 'dart:math';
 import 'dart:typed_data';
 import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:windou/windou/presentations/screens/transaction/transaction_screen.dart';
 import 'package:windou/windou/presentations/widgets/button_widget.dart';
 import 'dart:ui' as ui;
 
@@ -23,7 +25,7 @@ class DetectScreen extends StatefulWidget {
 
 class _DetectScreenState extends State<DetectScreen> {
   List<Rect> _boundingBoxes = []; // List to store bounding box data
-
+  late GarbageModel garbageModel;
   @override
   void initState() {
     super.initState();
@@ -84,25 +86,28 @@ class _DetectScreenState extends State<DetectScreen> {
             height: 20,
           ),
           Expanded(
-            child: Stack(
-              // Use Stack to overlay bounding boxes on image
-              children: [
-                Center(child: Image.file(File(widget.path))),
-                Center(
-                  child: CustomPaint(
-                    // Use CustomPaint to draw bounding boxes
-                    size: MediaQuery.of(context).size,
-                    painter: BoundingBoxPainter(_boundingBoxes),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Stack(
+                // Use Stack to overlay bounding boxes on image
+                children: [
+                  Center(child: Image.file(File(widget.path))),
+                  Center(
+                    child: CustomPaint(
+                      // Use CustomPaint to draw bounding boxes
+                      size: MediaQuery.of(context).size,
+                      painter: BoundingBoxPainter(_boundingBoxes),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           SizedBox(
             height: 20,
           ),
           Container(
-            height: 200,
+            height: 50,
             child: StreamBuilder<List<GarbageModel>>(
                 stream: FireBaseDataBase.readGarbages(),
                 builder: (context, snapshot) {
@@ -117,6 +122,13 @@ class _DetectScreenState extends State<DetectScreen> {
                         mainAxisSpacing: 15,
                         childAspectRatio: 8,
                         children: snapshot.data!
+                            .where((element) {
+                              if (element.name == "Chai") {
+                                garbageModel = element;
+                                return true;
+                              }
+                              return false;
+                            })
                             .map((e) => Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
@@ -137,14 +149,24 @@ class _DetectScreenState extends State<DetectScreen> {
                   } else
                     return Container();
                 }),
-          ), SizedBox(
+          ),
+          SizedBox(
             height: 20,
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 50,vertical: 10),
-            margin: EdgeInsets.only(bottom: 20),
-            child: ButtonWidget(label: "Xác nhận", color: ColorPalette.primaryColor,textColor: Colors.white, onTap:(){}))
-         
+              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+              margin: EdgeInsets.only(bottom: 20),
+              child: ButtonWidget(
+                  label: "Xác nhận",
+                  color: ColorPalette.primaryColor,
+                  textColor: Colors.white,
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return TransactionScreen(
+                        garbageItem: garbageModel,
+                      );
+                    }));
+                  }))
         ],
       ),
     );
